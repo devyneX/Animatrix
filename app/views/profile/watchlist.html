@@ -1,0 +1,41 @@
+{% extends 'profile.html' %}
+
+{% block title %}{{ content }}{% endblock %}
+
+
+{% block profile_content %}
+<h3 class="profile-content-title">{{ content }}</h3>
+<div class="profile-body-component profile-friends-body">
+    <!-- "{{ url_for('user.profile.profile', username=user.username) }}" -->
+    {% if num_items == 0 %}
+    <div font-size="1em">No anime to show</div>
+    {% else %}
+    {% for anime in watchlist %}
+    <div class="name-username-container connections">
+        <div class="name-username-dp-container">
+            {% if anime.picture %}
+            <div class="profile-picture-container sm">
+                <img class="profile-picture sm sqr" src="/static/img/upload_folder/{{ anime.picture }}" alt="">
+            </div>
+            {% else %}
+            <div class="profile-picture-container sm">
+                <img class="profile-picture sm sqr" src="/static/img/anime_default.png" alt="no image">
+            </div>
+            {% endif %}
+            <div class="name-username" onclick="changeUrl(`{{ url_for('anime.anime_page', id=anime.id) }}`)">
+                <div class="name sm">{{ anime.title }}</div>
+            </div>
+        </div>
+        <div>
+            {% if content == "Watchlist" %}
+            <i class="fa fa-times" onclick="changeUrl(`{{ url_for('user.remove_from_watchlist', id=anime.id) }}`)"></i>
+            {% elif user.id == current_user.id %}
+            <i class="fa fa-times" onclick="changeUrl(`{{ url_for('user.remove_from_favorites', id=anime.id) }}`)"></i>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+</div>
+{% endblock %}

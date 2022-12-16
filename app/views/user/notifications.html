@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Notifications{% endblock %}
+
+{% block content %}
+
+<div class="post-body">
+    <div class="profile-body-component">
+        <div class="profile-content-title" style="color: black; margin-bottom: 10px;">Notifications</div>
+        {% if list | length != 0 %}
+        {% for notification in list %}
+        <div style="font-size: 1em;">
+            <hr>
+            {{ notification.text }}
+        </div>
+        {% endfor %}
+        {% else %}
+        <div style="font-size: 1em;">
+            No new notifications
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if top_anime %}
+Top Anime
+{% else %}
+Search Results
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="profile-body" style="margin: unset;">
+    {% if list | length != 0 %}
+    {% block search_results %}
+    {% for anime, rating in list %}
+    <div class="profile-body-component profile-card post-container">
+        {% if anime.picture %}
+        <div class="profile-picture-container sm">
+            <img class="profile-picture sm sqr" src="/static/img/upload_folder/{{ anime.picture }}" alt="">
+        </div>
+        {% else %}
+        <div class="profile-picture-container sm">
+            <img class="profile-picture sm sqr" src="/static/img/anime_default.png" alt="no image">
+        </div>
+        {% endif %}
+        <div class="profile-info">
+            <div class="name-username-container">
+                <div class="name lg name-username" onclick="changeUrl(`{{ url_for('anime.anime_page', id=anime.id) }}`)">{{ anime.title }}</div>
+            </div>
+            {% if rating %}
+            <h3>Average Rating: {{ rating }}</h3>
+            {% else %}
+            <h3>Average Rating: 0.00</h3>
+            {% endif %}            
+        </div>
+    </div>
+    {% endfor %}
+    {% endblock %}
+    {% else %}
+    <div class="profile-body-component">
+        <div style="font-size: 1em;">No Results</div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %} 
+
+{% block title %}Find Anime{% endblock %} 
+
+{% block content %} 
+<div class="find-anime-body">
+    <div class="find-anime-form-container">
+    <h1>Find Anime</h1>
+    {% block action_link %}  
+    <form action="{{ url_for('browse.advanced_search') }}" method="POST" class="find-anime-form">
+    {% endblock %}
+        <div class="form-item-container">
+            <label>Title</label><br>
+            <input type="text" class="auth-form-input" name="title" placeholder="Search for an anime">
+        </div>
+        {% block extra_field %}{% endblock %}
+        <div class="form-item-container">
+            <label>Minimum Rating</label><br>
+            <input type="text" class="auth-form-input" name="rating" placeholder="Minimum Rating (1-5)">
+        </div>
+        <div class="form-item-container">
+            <label>Released between</label><br>
+            <input type="date" name="start_date" class="auth-form-input date-field">
+            <label>to</label>
+            <input type="date" name="end_date" class="auth-form-input date-field"> 
+        </div>
+        <div class="form-button-holder">
+            <button type="submit" class="button btn-round btn-lblue auth-submit-button">Search</button>
+        </div>    
+    </form>
+    
+</div>
+</div>
+{% endblock %}

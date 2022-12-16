@@ -1,0 +1,28 @@
+{% extends 'admin_table.html' %}
+
+{% block title %}Users{% endblock %}
+
+{% block table_head %}
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Join Date</th>
+    <th>Ban Account</th>
+    <th>Delete Account</th>
+</tr>
+{% endblock %}
+{% block table_body %}
+{% for user in list %}
+<tr onclick="">
+    <td>{{ user.id }}</td>
+    <td>{{ user.name }}</td>
+    <td>{{ user.username }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.joindate }}</td>
+    <td><button class="btn btn-primary" onclick="changeUrl(`{{ url_for('admin.ban_form', username=user.username) }}`)">Ban</button></td>
+    <td><button class="btn btn-primary" onclick="changeUrl(`{{ url_for('admin.permanent_ban', username=user.username) }}`)">Permanent Ban</button></td>
+</tr>
+{% endfor %}
+{% endblock %}

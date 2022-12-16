@@ -1,0 +1,40 @@
+{% extends 'search_results.html' %}
+
+{% block title %}Most Popular Anime{% endblock %}
+
+{% block search_results %}
+{% for anime, favorited, recommended, watchlisted in list %}
+<div class="profile-body-component profile-card post-container">
+    {% if anime.picture %}
+    <div class="profile-picture-container sm">
+        <img class="profile-picture sm sqr" src="/static/img/upload_folder/{{ anime.picture }}" alt="">
+    </div>
+    {% else %}
+    <div class="profile-picture-container sm">
+        <img class="profile-picture sm sqr" src="/static/img/anime_default.png" alt="no image">
+    </div>
+    {% endif %}
+    <div class="profile-info">
+        <div class="name-username-container">
+            <div class="name lg name-username" onclick="changeUrl(`{{ url_for('anime.anime_page', id=anime.id) }}`)">{{ anime.title }}</div>
+        </div>
+        {% if favorited %}
+        <h3>Favorited {{ favorited }} times</h3>
+        {% else %}
+        <h3>Favorited 0 times</h3>
+        {% endif %}     
+        {% if recommended %}
+        <h3>Recommended {{ recommended }} times</h3>
+        {% else %}
+        <h3>Recommended 0 times</h3>
+        {% endif %}     
+        {% if watchlisted %}
+        <h3>Watchlisted {{ watchlisted }} times</h3>
+        {% else %}
+        <h3>Watchlisted 0 times</h3>
+        {% endif %}     
+               
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

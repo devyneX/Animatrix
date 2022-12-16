@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+{% endblock %}
+
+{% block title %}Support Requests{% endblock %}
+
+{% block content %}
+<div class="container-sm" style="margin-top: 20px;">
+    <h3>Send New Request</h3>
+    <form method="POST">
+        <div class="form-floating mb-3">
+            <textarea type="text" id="request_form_text" class="form-control" name="text" placeholder="Request" required style="height: 100px"></textarea>
+            <label for="request_form_text" class="form-label">Request</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<div class="container-sm mt-3">
+    <h3>Previous Requests</h3>
+    <table class="table table-responsive table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Request</th>
+                <th>Respnose</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for request in requests %}
+            <tr>
+                <td>{{ request.text }}</td>
+                {% if request.response %}
+                <td>{{ request.response.text }}</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

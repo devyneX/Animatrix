@@ -1,0 +1,21 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Support Response{% endblock %}
+
+{% block content %}
+<div class="container-sm">
+    <h1>Support Response</h1>
+    <form action="{{ url_for('admin.support_respond') }}" method="POST">
+        <div class="form-floating mb-3">
+            <input type="text" id="form-support-response-id" class="form-control" name="id" placeholder="Request ID" value="{{ req_id }}" readonly>
+            <label for="form-support-response-id" class="form-label">Request ID</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" id="form-support-response-text" class="form-control" name="text" placeholder="Response" required>
+            <label for="form-support-response-text" class="form-label">Response</label>
+        </div>
+        <button class="btn btn-primary">Respond</button>
+    </form>
+</div>
+
+{% endblock %}

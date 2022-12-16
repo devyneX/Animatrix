@@ -1,0 +1,18 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+<h1>Admin Login</h1>
+<form method="POST">
+    <div class="form-floating mb-3">
+        <input type="text" id="admin-username" class="form-control" name="username" placeholder="Username" required>
+        <label for="admin-username" class="form-label">Username</label>
+
+    </div>
+    <div class="form-floating mb-3">
+        <input type="Password" id="admin-password" class="form-control" name="password" placeholder="Password" required>
+        <label for="admin-password" class="form-label">Password</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+</div>
+{% endblock %}

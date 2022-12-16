@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Profile Picture{%endblock%}
+
+{% block content %}
+<div class="auth-body">
+    <div class="auth-form-container">
+        <h1>Profile Picture Upload</h1>
+        <form action="{{ url_for('user.profile_pic') }}" method="POST" enctype=multipart/form-data class="auth-form">
+            <div class="form-item-container">
+                <label for="">Upload Picture</label>
+                <input type="file" class="auth-form-input file-field" name="profile_pic" required>
+            </div>
+            <div class="form-button-holder">
+                <button class="button btn-round btn-lblue auth-submit-button">Submit</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

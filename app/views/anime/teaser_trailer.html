@@ -1,0 +1,19 @@
+{% extends 'anime.html' %}
+
+{% block title %}{{ anime.title }} {{ content }}{% endblock %}
+
+{% block anime_content %}
+<div class="profile-content-title">{{ content }}</div>
+{% if link %}
+<div class="profile-body-component teaser-trailer-container">
+    <iframe width="560" height="315" src="{{ link }}" title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    
+</div>
+{% else %}
+<div class="profile-body-component profile-friends-body">
+    <div style="font-size: 1em;">Coming soon...</div>
+</div>
+{% endif %}
+{% endblock %}

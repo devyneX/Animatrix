@@ -1,0 +1,12 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+<table class="table table-responsive table-striped table-hover">
+    <thead class="table-dark">
+        {% block table_head %}{% endblock %}
+    </thead>
+    <tbody class="">
+        {% block table_body %}{% endblock %}
+    </tbody>
+</table>
+{% endblock %}

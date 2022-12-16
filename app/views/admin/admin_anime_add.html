@@ -1,0 +1,41 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}Add Anime{% endblock %}
+
+{% block content %}
+<div class="container-sm">
+    <h1>Anime</h1>
+    <form method="POST" enctype=multipart/form-data>
+        <div class="form-floating mb-3">
+            <input type="text" id="form-anime-title" class="form-control" name="title" placeholder="Title" required>
+            <label for="form-anime-title" class="form-label">Title</label>
+        </div>
+        <div class="mb-3">
+            <label for="form-anime-profile-pic" class="form-label">Display Picture</label>
+            <input type="file" id="form-anime-profile-pic" class="form-control" name="profile_pic" placeholder="Display Picture">
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" id="form-anime-synopsis" class="form-control" name="synopsis" placeholder="Synopsis">
+            <label for="form-anime-synopsis" class="form-label">Synopsis</label>
+    
+        </div>
+        <div class="form-floating mb-3">
+            <input type="date" id="form-anime-releasedate" class="form-control" name="release_date" placeholder="Release Date">
+            <label for="form-anime-releasedate" class="form-label">Release Date</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" id="form-anime-prequel" class="form-control" name="prequel_id" placeholder="Prequel Id">
+            <label for="form-anime-releasedate" class="form-label">Prequel Id</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="url" id="form-anime-teaserlink" class="form-control" name="teaser_link" placeholder="Teaser Link">
+            <label for="form-anime-teaserlink" class="form-label">Teaser Link</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="url" id="form-anime-trailerlink" class="form-control" name="trailer_link" placeholder="Teaser Link">
+            <label for="form-anime-trailerlink" class="form-label">Trailer Link</label>
+        </div>
+        <button class="btn btn-primary">Add Anime</button>
+    </form>
+</div>
+{% endblock %}

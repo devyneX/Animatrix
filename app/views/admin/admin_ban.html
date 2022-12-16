@@ -1,0 +1,31 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}Ban User{% endblock %}
+
+{% block content %}
+<div class="container-sm">
+    <h1>Ban User</h1>
+    <form action="{{ url_for('admin.ban') }}" method="POST">
+        <div class="form-floating mb-3">
+            <input type="text" id="ban-username" class="form-control" name="username" placeholder="Username" value="{{ username }}" readonly>
+            <label for="ban-username" class="form-label">Username</label>
+        
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" id="ban-reason" class="form-control" name="reason" placeholder="Reason" required>
+            <label for="ban-reason" class="form-label">Reason</label>
+    
+        </div>
+        <div class="form-floating mb-3">
+            <input type="url" id="ban-url" class="form-control" name="link" placeholder="Link" required>
+            <label for="ban-url" class="form-label">Link</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" id="ban-duration" class="form-control" name="duration" placeholder="Duration" required>
+            <label for="ban-duration" class="form-label">Duration (Days)</label>
+        </div>
+        <button class="btn btn-primary">Ban</button>
+    </form>
+</div>
+
+{% endblock %}

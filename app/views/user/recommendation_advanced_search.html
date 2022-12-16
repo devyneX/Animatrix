@@ -1,0 +1,20 @@
+{% extends "find_anime.html" %}
+
+{% block title %}Recommendation Advanced Search{% endblock %}
+
+{% block action_link %}  
+<form action="{{ url_for('user.recommendation_advanced_search') }}" method="POST" class="find-anime-form">
+{% endblock %}
+
+{% block extra_field %}
+
+<div class="form-item-container">
+    <label for="">Recommended by</label>
+    <input list="recommender-   list" name="recommender" class="auth-form-input" placeholder="Recommended by">
+    <datalist id="recommender-list">
+        {% for friend in friends %}
+        <option value="{{ friend.username }}">
+        {% endfor %}
+    </datalist>
+</div>
+{% endblock %}

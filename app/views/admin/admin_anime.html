@@ -1,0 +1,34 @@
+{% extends 'admin_table.html' %}
+
+{% block title %}Anime{% endblock %}
+
+{% block table_head %}
+<tr>
+    <th>ID</th>
+    <th>Picture</th>
+    <th>Title</th>
+    <th>Synopsis</th>
+    <th>Release Date</th>
+    <th>Sequel</th>
+    <th>Teaser Link</th>
+    <th>Trailer Link</th>
+</tr>
+{% endblock %}
+{% block table_body %}
+{% for anime in list %}
+<tr onclick="changeUrl(`{{ url_for('admin.edit_anime', id=anime.id) }}`)">
+    <td>{{ anime.id }}</td>
+    {% if anime.picture %}
+    <td><img style="width: 100px;" src="/static/img/upload_folder/{{ anime.picture }}" alt=""></td>
+    {% else %}
+    <td>Null</td>
+    {% endif %}
+    <td>{{ anime.title }}</td>
+    <td>{{ anime.synopsis }}</td>
+    <td>{{ anime.release_date }}</td>
+    <td>{{ anime.sequel_anime.title }}</td>
+    <td>{{ anime.teaser_link }}</td>
+    <td>{{ anime.trailer_link }}</td>
+</tr>
+{% endfor %}
+{% endblock %}

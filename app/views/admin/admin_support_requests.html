@@ -1,0 +1,31 @@
+{% extends "admin_table.html" %}
+
+{% block title %}Support Requests{% endblock %}
+
+{% block table_head %}
+<tr>
+    <th>ID</th>
+    <th>Username</th>
+    <th>Request</th>
+    <th>Date</th>
+    <th>Response</th>
+    <th>Responder ID</th>
+</tr>
+{% endblock %}
+{% block table_body %}
+{% for support_request in list %}
+<tr onclick="">
+    <td>{{ support_request.id }}</td>
+    <td>{{ support_request.user.username }}</td>
+    <td>{{ support_request.text }}</td>
+    <td>{{ support_request.date }}</td>
+    {% if support_request.response %}
+    <td>{{ support_request.response.text }}</td>
+    <td>{{ support_request.response.admin.username }}</td>
+    {% else %}
+    <td><button class="btn btn-primary"
+            onclick="changeUrl(`{{ url_for('admin.support_response_form', id=support_request.id) }}`)">Respond</button></td>
+    <td></td>
+    {% endif %}
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,884 @@
+*{
+    box-sizing: border-box;
+}
+/* TODO: add icon hover cursos */
+::-webkit-scrollbar{
+    width: 15px;
+    /* z-index: 1; */
+}
+::-webkit-scrollbar-track{
+    background-color: #f1f1f1;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #888;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: #555;
+}
+
+/* body */
+body{
+    background-color: #04151F;
+    /* background-color: white; */
+    margin: 0;
+    /* margin-right: 15px; */
+    font-family: Roboto, sans-serif;
+}
+.body-content {
+    padding-top: 55px;
+}
+
+/*  buttons */
+.button {
+    position: relative;
+    top: 0px;
+    border: 0px;
+
+}
+
+.button:hover {
+    top: 2px;
+}
+
+.button:active {
+    transition: 100ms ease;
+    top: 5px;
+}
+
+.btn-round {
+    border-radius: 20px;
+}
+
+.btn-squarish {
+    border-radius: 10px;
+    transition: border-radius 100ms;
+}
+.btn-squarish:hover{
+    border-radius: 20px;
+}
+
+.btn-lblue {
+    background-color: #507DBC;
+    box-shadow: 0px 10px 10px 0px #04151F;
+}
+
+.btn-lblue:hover {
+    background-color: #10567E;
+    box-shadow: 0px 5px 5px 0px #04151F;
+}
+
+.btn-lblue:active {
+    background-color: #194660;
+    box-shadow: 0px 2px 2px 0px #04151F;
+}
+
+.btn-dblue {
+    background-color: #0D0B1D;
+    color: white;
+    border: 2px solid #0D0B1D;
+}
+
+.btn-dblue:hover {
+    background-color: inherit;
+    color: #0D0B1D;
+}
+
+/* nav */
+
+nav{
+    background-color: #DDDBF1;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    width: 100%;
+    height: 55px;
+    border-radius: 0px 0px 20px 20px;
+    z-index: 3;
+}
+
+/* dropdown menus */
+.nav-dropdown{
+    background-color: #DDDBF1;
+    float: left;
+    position: fixed;
+    top: 50px;
+    padding-top: 1vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* left of nav (logo, nav-links, collapsible menu) */
+
+.nav-left{
+    margin: 0px 5px;
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+}
+.logo-container {
+    margin: 0;
+    padding: 0;
+    height: 80%;
+}
+
+.logo-container>a>img {
+    height: 90%;
+}
+
+.menu-icon-container{
+    display: none;
+}
+
+.nav-btn-container{
+    display: flex;
+    align-items: center;
+}
+
+.nav-btn{
+    margin: 2px;
+    padding: 10px;
+    font-size: medium;
+    font-weight: bold;
+    color: #04151F;
+    text-decoration: none;
+}
+
+.nav-btn:hover{
+    background-color: #F1F0F9;
+}
+
+/* right of nav (search, auth buttons, user menu) */
+
+.nav-right{
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* search bar */
+
+.search-bar{
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar-input-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #0D0B1D;
+}
+
+.search-bar-select{
+    background-color: #F1F0F9;
+    padding: 10px;
+    border-radius: 10px 0px 0px 10px;
+    border: 0;
+}
+
+#nav-search-form{
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+#search-close-icon{
+    margin-left: -20px;
+}
+#search-bar-input{
+    background-color: #F1F0F9;
+    width: 20vw;
+    padding: 10px;
+    border-radius: 0px 10px 10px 0px;
+    border: 0;
+    /* box-shadow: 5px 0px 10px #0D0B1D; */
+    transition: width 1s;
+}
+#search-bar-input:focus, .search-bar-select:focus ~ #search-bar-input{
+    outline: none !important;
+    width: 50vw;
+}
+
+/* login sign up buttons */
+
+.nav-auth-btn{
+    /* max-width: 8vw; */
+    font-size: medium;
+    font-weight: bold;
+    margin: 2px 5px;
+    padding: 8px 15px;
+}
+.user-icon-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2vw;
+}
+#nav-user-menu{
+    display: none;
+    right: 2vh;
+}
+
+/* home page */
+
+.home-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-text-container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: calc(100vw - 15px);
+    height: 30vh;
+}
+
+.welcome-text{
+    width: 20ch;
+    white-space: nowrap;
+    overflow: hidden;
+    color: white;
+    font-size: 5em;
+    font-weight: bold;
+    border-right: 4px solid white;
+    animation: cursor 1ms step-start infinite,
+        text 5s steps(20) alternate infinite;
+    z-index: 1;
+}
+
+@keyframes cursor {
+
+    0%,
+    100% {
+        border-color: #212121;
+    }
+}
+
+@keyframes text {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 20ch;
+    }
+}
+
+.home-img{
+    height: 50vh;
+    position: fixed;
+    z-index: -1;
+}
+
+#home-luffy{
+    top: 30vh;
+    left: 10px;
+}
+
+#home-naruto{
+    top: 70px;
+    right: 25px;    
+}
+
+.join-button{
+    border: none;
+    margin-top: 50px;
+    padding: 15px 40px;
+    border-radius: 25px;
+    font-size: large;
+}
+
+
+/* auth pages */
+
+.auth-body{
+    padding: 5vh 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-form-container{
+    background-color: #F1F0F9;
+    padding: 30px 20px;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.auth-form{
+    padding: 5px 20px;
+}
+
+.form-item-container{
+    margin: 10px 0px;
+    width: 90%; 
+}
+
+.auth-form-input{
+    background-color: inherit;
+    width: 100%;
+    margin: 10px 0px;
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid #0D0B1D;
+}
+
+.auth-form-input:focus{
+    outline: none !important;
+    border: 1px solid #507DBC;
+    box-shadow: 0 0 10px #507DBC;
+}
+
+.form-button-holder{
+    text-align: center;
+}
+.form-button-holder.right{
+    text-align: right;
+}
+
+.auth-submit-button {
+    font-size: medium;
+    margin: 10px 0px;
+    padding: 10px 30px;
+}
+
+/* profile */
+
+/* sidebar */
+/* FIXME: sidebar transitions without the making the sidebar items visible */
+
+.profile-sidebar-container{
+    position: fixed;
+    top: 0;
+    padding-top: 55px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #183A37;
+    margin: 0;
+    width: 216px;
+    height: 100%;
+    z-index: 2;
+}
+
+.profile-sidebar{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* min-width: 160px; */
+}
+.sidebar-item{
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    font-size: medium;
+    margin: 5px 0px;
+    padding: 15px;
+}
+.sidebar-item:hover{
+    background-color: #52B7AE;
+}
+.sidebar-button-container{
+    display: none;
+    align-self: center;
+}
+
+/* profile main body */
+
+.profile-body{
+    margin-top: 10px;
+    margin-left: 216px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-body-component{
+    background-color: #F1F0F9;
+    width: 90%;
+    max-width: 750px;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* .profile-body-component.zoom:hover{
+    padding: 25px;
+} */
+
+.profile-card{
+    display: flex;
+}
+.profile-picture-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+.profile-picture-container.m{
+    width: unset;
+}
+.profile-picture-container.sm{
+    width: unset;
+}
+.profile-picture{
+    border-radius: 50%;
+    width: 100%;
+}
+.profile-picture.sm{
+    height: 2.5em;
+    width: unset;
+}
+.profile-picture.sqr {
+    border-radius: 0;
+}
+.name-username-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.name-username-dp-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.name-username{
+    width: fit-content;
+}
+.name-username:hover{
+    cursor: pointer;
+    color: #507DBC;
+    text-decoration: underline;
+}
+
+.username{
+    color: #507DBC;
+    text-decoration: underline;
+    font-style: italic;
+}
+
+.name.lg{
+    font-size: 2.5em;
+}
+.username.lg{
+    font-size: 1.5em;
+}
+.name.m {
+    font-size: 1.5em;
+}
+
+.username.m {
+    font-size: 1em;
+}
+
+.name.sm {
+    font-size: 1.25em;
+}
+
+.username.sm {
+    font-size: 0.75em;
+}
+
+.name, .username{
+    margin: 0;
+    padding: 0;
+}
+
+.profile-info{
+    width: 100%;
+    margin: 10px 10px 0px;
+    padding: 10px 10px 0px;
+}
+
+.action-button-container{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.action-button {
+    /* background-color: #072536; */
+    /* color: white; */
+    margin-right: 10px;
+    padding: 10px 30px;
+    /* border: 2px solid #072536; */
+    /* border-radius: 10px; */
+}
+
+.profile-stats-container{
+    margin: 10px;
+    padding: 20px 0px;
+    display: flex;
+    justify-content: space-between;
+    gap: 1vw;
+    /* flex-wrap: wrap; */
+}
+.profile-stat{
+    text-align: center;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.profile-post-form{
+    margin-top: 10px;
+}
+
+
+.post-container{
+    padding: 15px 20px 5px 20px;
+}
+
+.post-container:hover {
+    padding: 20px 25px 10px 25px;
+    transition: all 100ms;
+}
+
+.post-time{
+    margin-top: 5px;
+}
+
+.post-text{
+    margin-top: 15px;
+}
+
+.post-reaction-button-container{
+    margin: 0;
+    position: relative;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.post-reaction-button{
+    width: 33%;
+    padding: 20px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.post-reaction-button:hover, .post-reaction-button.reacted{
+    background-color: #C7C4E8;
+}
+
+.profile-content-title{
+    color: white;
+    font-size: 2em;
+}
+
+.profile-friends-body{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+.connections{
+    width: 45%;
+    margin-top: 10px;
+}
+
+.synopsis-container{
+    background-color: inherit;
+    color: #F1F0F9;
+}
+
+.teaser-trailer-container{
+    background-color: inherit;
+    display: flex;
+    justify-content: center;
+}
+
+/* .post-form{
+
+} */
+
+.post-textarea{
+    background-color: inherit;
+    font-size: 1.25em;
+    margin: 10px;
+    width: 100%;
+    min-height: 80px;
+    border: 0;
+    resize: none;
+
+}
+.post-textarea:focus{
+    outline: none;
+}
+.anime-post-category{
+    margin: 10px;
+    padding: 5px 0px;
+    border-radius: 20px;
+    text-align: center;
+    background-color: rgba(168, 209, 223, 0.5);
+    border: 0;
+}
+.anime-post-category::placeholder{
+    color: black;
+}
+.anime-post-category:focus{
+    outline: none;
+}
+.anime-post-category.div{
+    margin: 5px 0px 0px 0px;
+    padding: 5px;
+    width: fit-content;
+}
+.post-form-bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.toggle-button{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#private-checkbox{
+    display: none;
+}
+
+.post-button{
+    padding: 10px 20px;
+}
+
+.pop-up-form{
+    /* background-color: #F1F0F9; */
+    position: fixed;
+    left: calc((100% - 440)/2);
+    top: 30%;
+    width: 440px;
+    min-height: 40%;
+    display: none;
+    z-index: 3;
+}
+
+.star-container{
+    margin: 10px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.star-container>i{
+    display: block;
+}
+
+.star-radio{
+    display: none;
+}
+
+.post-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.find-anime-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.find-anime-form-container{
+    background-color: #F1F0F9;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.find-anime-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+.date-field{
+    width: 45%;
+}
+
+.file-field{
+    padding: 0;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background-color: #0D0B1D;
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid black;
+    margin: 0;
+}
+
+.flash-message-container{
+    position: fixed;
+    top: 55px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+.flash-message{
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.success{
+    background-color: green;    
+}
+    
+.error{
+    background-color: red;
+}
+.neutral{
+    background-color: blue;
+}
+
+
+/* respnisve */
+
+@media screen and (max-width: 900px) {
+    .menu-icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 2vw;
+    }
+
+    .nav-btn-container {
+        display: none;
+    }
+
+    #nav-btns {
+        left: 2vw;
+    }
+    .connections{
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .profile-card {
+        flex-direction: column;
+    }
+    .welcome-text{
+        font-size: 3em; 
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .profile-body {
+        margin-left: 30px;
+    }
+
+    .profile-sidebar-container {
+        width: 30px;
+
+    }
+    .profile-sidebar{
+        width: unset;
+    }
+
+    .profile-sidebar-container:focus {
+        transition: 300ms ease;
+        width: 216px;
+    }
+
+    .sidebar-button-container {
+        display: block;
+    }
+
+    .profile-sidebar {
+        display: none;
+        width: inherit;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .welcome-text{
+        font-size: 2em; 
+    }
+    .find-anime-form-container{
+        width: 90%;
+    }
+
+}
+
+@media screen and (max-width: 440px) {
+    .logo-container {
+            display: none;
+    }
+    .nav-auth-btn {
+        /* width: 8vw; */
+        font-size: medium;
+        font-weight: normal;
+        margin: 2px 5px;
+        padding: 5px 5px;
+    }
+
+    .find-anime-form-container{
+        width: 100%;
+    }
+    
+    .profile-body-component {
+        width: 100%;
+    }
+    .name.sm, .username.sm{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 5em;
+    }
+    .pop-up-form{
+        width: 90%;
+    }
+
+}
+@media screen and (max-width: 350px) {
+    #search-bar-input {
+            width: 15vw;
+        }
+    
+    #search-bar-input:focus,
+    .search-bar-select:focus~#search-bar-input {
+        width: 40vw;
+    }
+    .name-username-container {
+            flex-direction: column;
+    }
+    .profile-stats-container{
+        flex-direction: column;
+    }
+    .welcome-text{
+        font-size: 1.25em; 
+    }
+}
+

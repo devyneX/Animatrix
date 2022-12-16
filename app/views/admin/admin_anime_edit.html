@@ -1,0 +1,64 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}Edit Anime{% endblock %}
+
+{% block content %}
+<div class="container-sm">
+    <h1>Anime</h1>
+    <form method="POST" enctype=multipart/form-data>
+        <div class="form-floating mb-3">
+            {% if anime.title %}
+            <input type="text" id="form-anime-title" class="form-control" name="title" placeholder="Title" value="{{ anime.title }}" required>
+            {% else %}
+            <input type="text" id="form-anime-title" class="form-control" name="title" placeholder="Title" required>
+            {% endif %}
+            <label for="form-anime-title" class="form-label">Title</label>
+        </div>
+        <div class="mb-3">
+            <label for="form-anime-profile-pic" class="form-label">Display Picture</label>
+            <input type="file" id="form-anime-profile-pic" class="form-control" name="profile_pic" placeholder="Display Picture">
+        </div>
+        <div class="form-floating mb-3">
+            {% if anime.synopsis %}
+            <input type="text" id="form-anime-synopsis" class="form-control" name="synopsis" placeholder="Synopsis" value="{{ anime.synopsis }}">
+            {% else %}
+            <input type="text" id="form-anime-synopsis" class="form-control" name="synopsis" placeholder="Synopsis" value="{{ anime.synopsis }}">
+            {% endif %}
+            <label for="form-anime-synopsis" class="form-label">Synopsis</label>
+        </div>
+        <div class="form-floating mb-3">
+            {% if anime._release_date %}
+            <input type="date" id="form-anime-releasedate" class="form-control" name="release_date" placeholder="Release Date" value="{{ anime.release_date_raw() }}">
+            {% else %}
+            <input type="date" id="form-anime-releasedate" class="form-control" name="release_date" placeholder="Release Date">
+            {% endif %}
+            <label for="form-anime-releasedate" class="form-label">Release Date</label>
+        </div>
+        <div class="form-floating mb-3">
+            {% if anime.prequel_anime %}
+            <input type="text" id="form-anime-prequel" class="form-control" name="prequel_id" placeholder="Prequel Id" value="{{ anime.prequel_anime.id }}">
+            {% else %}
+            <input type="text" id="form-anime-prequel" class="form-control" name="prequel_id" placeholder="Prequel Id">
+            {% endif %}
+            <label for="form-anime-releasedate" class="form-label">Prequel Id</label>
+        </div>
+        <div class="form-floating mb-3">
+            {% if anime.teaser_link %}
+            <input type="url" id="form-anime-teaserlink" class="form-control" name="teaser_link" placeholder="Teaser Link" value="{{ anime.teaser_link }}">
+            {% else %}
+            <input type="url" id="form-anime-teaserlink" class="form-control" name="teaser_link" placeholder="Teaser Link">
+            {% endif %}
+            <label for="form-anime-teaserlink" class="form-label">Teaser Link</label>
+        </div>
+        <div class="form-floating mb-3">
+            {% if anime.trailer_link %}
+            <input type="url" id="form-anime-trailerlink" class="form-control" name="trailer_link" placeholder="Teaser Link" value="{{ anime.trailer_link }}">
+            {% else %}
+            <input type="url" id="form-anime-trailerlink" class="form-control" name="trailer_link" placeholder="Teaser Link">
+            {% endif %}
+            <label for="form-anime-trailerlink" class="form-label">Trailer Link</label>
+        </div>
+        <button class="btn btn-primary">Make Changes</button>
+    </form>
+</div>
+{% endblock %}

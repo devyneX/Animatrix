@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="home-body">
+    <img src="/static/img/luffy.png" class="home-img" id="home-luffy">
+    <img src="/static/img/naruto.png" class="home-img" id="home-naruto">
+    <div class="welcome-text-container">
+        <div class="welcome-text">Welcome to Animatrix</div>
+    </div>
+    <button class="btn btn-lblue join-button" onclick="changeUrl(`{{ url_for('auth.sign_up') }}`)">Join Now</button>
+</div>
+{% endblock %}

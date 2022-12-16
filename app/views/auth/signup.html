@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="auth-body">
+    <div class="auth-form-container">
+        <h1>Sign Up</h1>
+        <form class="auth-form" action="{{ url_for('user.create_user') }}" method="POST">
+            <div class="form-item-container">
+                <label for="name">Name</label>
+                <input class="auth-form-input" type="text" placeholder="Name" name="name" required>
+            </div>
+
+            <div class="form-item-container">
+                <label for="username">Username</label>
+                <input class="auth-form-input" type="username" placeholder="Username" name="username" required>
+            </div>
+            <div class="form-item-container">
+                <label for="email">Email</label>
+                <input class="auth-form-input" type="email" placeholder="Email" name="email" required>
+            </div>
+            <div class="form-item-container">
+                <label for="password1">Password</label>
+                <input class="auth-form-input" type="password" placeholder="Password" name="password1" required>
+            </div>
+            <div class="form-item-container">
+                <label for="password2">Confirm Password</label>
+                <input class="auth-form-input" type="password" placeholder="Confirm Password" name="password2" required>        
+            </div>
+            <div class="form-item-container">
+                Already have an account? <a href="{{ url_for('auth.login') }}">Log In</a>
+            </div>
+            <div class="form-button-holder">
+                <button class="button btn-lblue btn-round auth-submit-button" type="submit">Sign Up</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
