@@ -27,7 +27,7 @@
             <img class="profile-picture" src="/static/img/upload_folder/{{ user.profile_pic }}">
         </div>
         {% else %}
-        <div class="profile-picture-container" onclick="changeUrl(`{{ url_for('user.profile_pic') }}`)">
+        <div class="profile-picture-container">
             <img class="profile-picture" src="/static/img/user.svg">
         </div>
         {% endif %}
@@ -88,25 +88,11 @@
         <form class="post-form" method="POST" action="{{ url_for('user.post') }}">
             <textarea class="post-textarea" name="text" placeholder="Share your thoughts..." required></textarea><br>
             <div class="post-form-bottom">
-                <div id="privacy-button" class="toggle-button">
+                <div class="toggle-button" onclick="privacyButtonClick()">
                     <input id="private-checkbox" type="checkbox" name="private" value="private">
                     <i id="privacy-toggle-icon" class="fa-solid fa-toggle-off fa-2x"></i>
                     <label for="private">Private</label>
                 </div>
-                <script>
-                    document.getElementById('privacy-button').onclick = () => {
-                        let x = document.getElementById('privacy-toggle-icon');
-                        let y = document.getElementById('private-checkbox');
-                        if (x.className === 'fa-solid fa-toggle-off fa-2x') {
-                            x.className = 'fa-solid fa-toggle-on fa-2x';
-                            y.checked = true;
-                        }
-                        else {
-                            x.className = 'fa-solid fa-toggle-off fa-2x';
-                            y.checked = false;
-                        }
-                    }
-                </script>
                 <div class="form-button-holder right">
                     <button class="button btn-round btn-lblue post-button">Post</button>
                 </div>
@@ -144,7 +130,6 @@
         </div>
         {% endif %}
 
-        <!-- TODO: add like and dislike counts -->
         <hr>
         <div class="post-reaction-button-container">
             {% if not user_reaction %}

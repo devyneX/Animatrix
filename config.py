@@ -12,7 +12,7 @@ class DevelopmentConfig(BaseConfig):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get("DEV_DB")
     UPLOAD_FOLDER = os.environ.get("DEV_UPLOAD")
-    SQLALCHEMY_ECHO = True
+    # SQLALCHEMY_ECHO = True
 
 
 class TestingConfig(BaseConfig):

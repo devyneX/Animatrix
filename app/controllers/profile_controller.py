@@ -120,12 +120,10 @@ class ProfileController:
 
     @login_required
     def favorites(self, username):
-        # FIXME the remove button should only be visible if the user is current_user
         self.gather_profile_info(username)
 
         lst = self.user.favorites.all()
 
-        # TODO: create html file for favorites
         return render_template(
             "watchlist.html",
             user=self.user,

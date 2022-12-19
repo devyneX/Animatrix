@@ -9,6 +9,8 @@
     <div class="welcome-text-container">
         <div class="welcome-text">Welcome to Animatrix</div>
     </div>
+    {% if not current_user.is_authenticated %}
     <button class="btn btn-lblue join-button" onclick="changeUrl(`{{ url_for('auth.sign_up') }}`)">Join Now</button>
+    {% endif %}
 </div>
 {% endblock %}

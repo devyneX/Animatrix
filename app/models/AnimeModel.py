@@ -8,7 +8,7 @@ class Anime(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(255), nullable=False)
     picture = db.Column(db.String())
-    synopsis = db.Column(db.String(1023))
+    synopsis = db.Column(db.String(2047))
     prequel_anime = db.relationship(
         "Anime",
         secondary=prequel,

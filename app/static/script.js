@@ -38,6 +38,19 @@ const resetNavBtnDisplay = () => {
     document.getElementById('nav-btns').style.display = navBtnDisplay;
 }
 
+const privacyButtonClick = () => {
+    let x = document.getElementById('privacy-toggle-icon');
+    let y = document.getElementById('private-checkbox');
+    if (x.className === 'fa-solid fa-toggle-off fa-2x') {
+        x.className = 'fa-solid fa-toggle-on fa-2x';
+        y.checked = true;
+    }
+    else {
+        x.className = 'fa-solid fa-toggle-off fa-2x';
+        y.checked = false;
+    }
+}
+
 const searchIconClick = () => {
     let x = document.getElementById('search-icon');
     // handleExpandables(x);
@@ -153,7 +166,6 @@ const starMouseOut = () => {
 const changeUrl = (url) => {
     location.href = url;
 }
-// `{{ url_for('user.follow', username=user.username) }}`
 
 const react = (like, post_id) => {
     fetch('/post/react', {

@@ -8,7 +8,6 @@
 <button class="button btn-squarish btn-lblue action-button" onclick="changeUrl(`{{ url_for('user.recommendation_advanced_search') }}`)">Advanced Search</button>
 
 <div class="profile-body-component profile-friends-body">
-    <!-- "{{ url_for('user.profile.profile', username=user.username) }}" -->
     {% if num_items == 0 %}
     <div style="font-size: 1em">No recommendations to show</div>
     {% else %}

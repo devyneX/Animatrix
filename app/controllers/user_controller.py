@@ -9,8 +9,9 @@ from flask import (
     current_app,
     jsonify,
 )
-from flask_login import current_user, login_required, login_user, logout_user
+from flask_login import current_user, login_required, login_user
 from ..models.UserModel import (
+    BaseUser,
     User,
     Recommendation,
     SupportRequest,
@@ -19,7 +20,6 @@ from ..models.UserModel import (
 )
 from ..models.AnimeModel import Anime, Rating
 from ..models.PostModel import Post
-from ..models.association_tables import follower
 from ..extensions import db
 from .utils import allowed_file
 from werkzeug.utils import secure_filename
@@ -43,23 +43,19 @@ class UserController:
         password2 = request.form.get("password2")
 
         if len(name) < 2:
-            # name too small
             flash("Enter a valid name", "error")
             return redirect(url_for("auth.sign_up"))
-        elif User.query.filter_by(username=username).first() is not None:
-            # username already exists
+        elif BaseUser.query.filter_by(username=username).first() is not None:
             flash("Username already exists", "error")
             return redirect(url_for("auth.sign_up"))
-        elif User.query.filter_by(email=email).first() is not None:
-            # email already exists
+        elif BaseUser.query.filter_by(email=email).first() is not None:
             flash("Email already exists", "error")
             return redirect(url_for("auth.sign_up"))
         elif len(password1) < 4:  # 8:
-            # TODO: change this to 8
+            # change this to 8 in production
             flash("Password too short", "error")
             return redirect(url_for("auth.sign_up"))
         elif password1 != password2:
-            # passwords don't match
             flash("Passwords don't match", "error")
             return redirect(url_for("auth.sign_up"))
         else:
@@ -90,14 +86,11 @@ class UserController:
     def follow(self, username):
         user = User.query.filter_by(username=username).first()
         if user is None:
-            # trying to follow a username that's not in the database
             abort(404)
         elif current_user.id == user.id:
-            # trying to follow yourself
             abort(403)
         else:
             if current_user.is_following(user):
-                # already following this user
                 abort(403)
             else:
                 current_user.following.append(user)
@@ -111,10 +104,8 @@ class UserController:
     def unfollow(self, username):
         user = current_user.following.filter(User.username == username).first()
         if user is None:
-            # trying to unfollow a username that wasn't followed
             abort(404)
         elif current_user.id == user.id:
-            # trying to unfollow yourself
             abort(403)
         else:
             current_user.following.remove(user)
@@ -128,7 +119,6 @@ class UserController:
             abort(404)
         else:
             if current_user.has_favorited(anime):
-                # already favorited this anime
                 abort(403)
             else:
                 if len(current_user.favorites.all()) < 5:
@@ -137,7 +127,6 @@ class UserController:
                     flash("Added to favorites!", "success")
                     return redirect(url_for("anime.anime_page", id=id))
                 else:
-                    # can't add more than 5 animes to top 5 favorites
                     flash("You can't add more than 5 animes to your favorites", "error")
                     flash("Remove one of your favorites first", "error")
                     return redirect(url_for("anime.anime_page", id=id))
@@ -157,14 +146,11 @@ class UserController:
     def add_to_watchlist(self, id):
         anime = Anime.query.get(id)
         if anime is None:
-            # does not exist
             abort(404)
         elif current_user.has_rated(anime):
-            # already rated/watched
             abort(403)
         else:
             if current_user.is_watchlisted(anime):
-                # already watchlisted this anime
                 abort(403)
             else:
                 current_user.watchlist_animes.append(anime)
@@ -175,12 +161,10 @@ class UserController:
     def remove_from_watchlist(self, id):
         anime = current_user.watchlist_animes.filter_by(id=id).first()
         if anime is None:
-            # trying to remove an anime from watchlist that wasn't watchlisted
             abort(404)
 
         current_user.watchlist_animes.remove(anime)
         db.session.commit()
-        # TODO: flash message
         flash("Removed from watchlist!", "success")
         return redirect(url_for("anime.anime_page", id=id))
 
@@ -189,15 +173,12 @@ class UserController:
         if request.method == "POST":
             users = request.form.getlist("users")
             if len(users) == 0:
-                # no users selected
                 return redirect(url_for("anime.anime_page", id=id))
 
             for user_id in users:
                 if user_id == current_user.id:
-                    # trying to recommend yourself
                     continue
                 elif current_user.has_recommended(user_id, id):
-                    # already recommended this anime to this user
                     continue
                 else:
                     recommendation = Recommendation(
@@ -290,7 +271,6 @@ class UserController:
     @login_required
     def post(self):
         if current_user.is_banned():
-            # user is banned and cannot post
             flash("You are banned and cannot post!", "error")
             return redirect(
                 url_for("user.profile.profile", username=current_user.username)
@@ -315,7 +295,6 @@ class UserController:
         if request.method == "POST":
             text = request.form.get("text")
             if text is None or text == "":
-                # no request written
                 flash("Write a request to submit", "error")
                 return redirect(url_for("user.support_requests"))
             support_request = SupportRequest(text=text)

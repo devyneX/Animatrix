@@ -8,11 +8,7 @@ from ..models.PostModel import Post, Reaction, Comment
 class PostController:
     def post(self, id):
         post = Post.query.get(id)
-        # FIXME
         reaction = post.get_reaction(current_user)
-        # like_count = post.reactions.query.filter_by(like=True).all()
-        # dislike_count = post.reactions.query.filter_by(like=False).all()
-        # comments = post.comments.query.order_by()
         return render_template("post.html", post=post, user_reaction=reaction)
 
     @login_required
@@ -21,12 +17,6 @@ class PostController:
         post = Post.query.get(reaction_json["post_id"])
         reaction = post.get_reaction(current_user)
         if reaction is not None:
-            # previously reacted
-            # prev  cur   res
-            # true  true  delete
-            # false true  true
-            # true  false false
-            # false false delete
             if reaction_json["like"] == reaction.like:
                 db.session.delete(reaction)
                 db.session.commit()
@@ -46,7 +36,6 @@ class PostController:
     @login_required
     def comment(self, id):
         if current_user.is_banned():
-            # user is banned and cannot comment
             abort(403)
         post = Post.query.get(id)
         comment = Comment(

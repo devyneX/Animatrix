@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="/static/style.css">
     {% block css %}{% endblock %}
     <script src="https://kit.fontawesome.com/6ffb1047c7.js" crossorigin="anonymous" defer></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script src="/static/script.js" defer></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" defer></script>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
     <title>{% block title %}Base{% endblock %}</title>
 </head>
 <body>
@@ -18,7 +18,7 @@
                 <i class="fa-solid fa-bars fa-2x"></i>
             </div>
             <div class="logo-container" id="logo">
-                <a href="#"><img src="/static/img/animatrix_logo.png" alt="Animatrix"></a>
+                <a href="{{ url_for('browse.home') }}"><img src="/static/img/animatrix_logo.png" alt="Animatrix"></a>
             </div>
             
             <div class="nav-btn-container" id="nav-btns">
@@ -54,18 +54,8 @@
             </div>
 
             {% else %}
-            <button class="button btn-round btn-lblue nav-auth-btn" id="login-button">Login</button>
-            <script>
-                document.getElementById("login-button").onclick = () => {
-                    location.href = "{{ url_for('auth.login') }}"
-                }
-            </script>
-            <button class="button btn-round btn-lblue nav-auth-btn" id="signup-button">Sign Up</button>
-            <script>
-                document.getElementById("signup-button").onclick = () => {
-                    location.href = "{{ url_for('auth.sign_up') }}"
-                }
-            </script>
+            <button class="button btn-round btn-lblue nav-auth-btn" id="login-button" onclick="changeUrl(`{{ url_for('auth.login') }}`)">Login</button>
+            <button class="button btn-round btn-lblue nav-auth-btn" id="signup-button" onclick="changeUrl(`{{ url_for('auth.sign_up') }}`)">Sign Up</button>
             {% endif %}
         </div>
     </nav>

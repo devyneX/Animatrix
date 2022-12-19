@@ -24,7 +24,6 @@
 
         <div class="post-text">{{ post.text }}</div>
 
-        <!-- TODO: Fix style -->
         {% if post.post_type == 'anime_post' %}
         <div style="display: flex;">
             <div class="anime-post-category div">{{ post.anime.title }}</div>
@@ -32,7 +31,6 @@
         </div>
         {% endif %}
 
-        <!-- TODO: add like and dislike counts -->
         <hr>
         <div class="post-reaction-button-container">
             {% if not user_reaction %}
@@ -61,7 +59,6 @@
                 <i class="fa-solid fa-comment fa-lg"></i>
             </div>
         </div>
-        <!-- comments -->
         <hr>
         <div class="name-username-dp-container">
             <div class="profile-picture-container">
