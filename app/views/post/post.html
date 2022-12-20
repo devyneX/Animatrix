@@ -61,7 +61,7 @@
         </div>
         <hr>
         <div class="name-username-dp-container">
-            {% if post.author.profile_pic %}
+            {% if current_user.profile_pic %}
             <div class="profile-picture-container sm">
                 <img class="profile-picture sm" src="/static/img/upload_folder/{{ current_user.profile_pic }}">
             </div>
