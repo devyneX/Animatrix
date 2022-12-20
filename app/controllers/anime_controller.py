@@ -106,6 +106,12 @@ class AnimeController:
         rating_obj = Rating(anime_id=id, user_id=current_user.id, rate=rating)
         db.session.add(rating_obj)
         db.session.commit()
+        anime = current_user.watchlist_animes.filter_by(id=id).first()
+        if anime is None:
+            abort(404)
+
+        current_user.watchlist_animes.remove(anime)
+        db.session.commit()
         return redirect(url_for("anime.anime_page", id=id))
 
     @login_required
