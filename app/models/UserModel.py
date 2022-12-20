@@ -249,7 +249,7 @@ class Notification(db.Model):
     def support_notification(cls, user, support_request):
         support_text = (
             support_request.text
-            if len(support_request.text <= 20)
+            if len(support_request.text) <= 20
             else support_request.text[:20] + "..."
         )
         notification = cls(
