@@ -78,7 +78,7 @@
         <form method="POST" action="{{ url_for('post.comment', id=post.id) }}">
             <textarea class="post-textarea" name="comment" placeholder="Comment"></textarea>
             <div class="form-button-holder">
-                <button type="submit" class="button btn-round btn-lblue auth-submit-button">Post</button>
+                <button type="submit" class="button btn-round btn-lblue auth-submit-button">Comment</button>
             </div>
         </form>
         {% for comment in post.comments %}
