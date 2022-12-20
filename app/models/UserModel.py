@@ -188,8 +188,8 @@ class PermanentBan(db.Model):
         user.followers = []
         user.favorites = []
         user.watchlist_animes = []
-        user.recommendations_made = []
-        user.recommendations_received = []
+        Recommendation.query.filter_by(recommended_by_id=user.id).delete()
+        Recommendation.query.filter_by(recommended_to_id=user.id).delete()
         user.ratings = []
         user.posts = []
         user.reactions = []
