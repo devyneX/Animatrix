@@ -25,7 +25,7 @@ Search Results
         {% endif %}
         <div class="profile-info">
             <div class="name-username-container">
-                <div class="name sm name-username" onclick="changeUrl(`{{ url_for('anime.anime_page', id=anime.id) }}`)">{{ anime.title }}</div>
+                <div class="name m name-username" onclick="changeUrl(`{{ url_for('anime.anime_page', id=anime.id) }}`)">{{ anime.title }}</div>
             </div>
             {% if rating %}
             <h3>Average Rating: {{ rating }}</h3>
