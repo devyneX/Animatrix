@@ -26,7 +26,7 @@ A social webapp for anime fans to share their thoughts and opinions on their fav
 - Create a PostgreSQL database named Animatrix
 - Create a .env file in the root directory and add the following variables:
     - DEV_DB=`postgresql://<username>:<password>@localhost/animatrix`
-    - UPLOAD_FOLDER=`path/to/your/upload/folder`
+    - DEV_UPLOAD=`path/to/your/upload/folder`
 - Initialize database using 
     - ```flask db init```
     - ```flask db migrate```
