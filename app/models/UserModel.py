@@ -195,7 +195,7 @@ class PermanentBan(db.Model):
         Rating.query.filter_by(user_id=user.id).delete()
         Post.delete(user)
         Ban.query.filter_by(user_id=user.id).delete()
-        SupportRequest.query.filter_by(user_id=user.id).delete()
+        SupportRequest.delete(user)
         Notification.query.filter_by(user_id=user.id).delete()
         ban = cls(email=user.email)
         db.session.delete(user)
@@ -213,6 +213,13 @@ class SupportRequest(db.Model):
     response = db.relationship(
         "SupportResponse", backref="support_request", uselist=False
     )
+
+    @classmethod
+    def delete(cls, user):
+        for request in user.support_requests:
+            if request.response:
+                db.session.delete(request.response)
+            db.session.delete(request)
 
 
 class SupportResponse(db.Model):
