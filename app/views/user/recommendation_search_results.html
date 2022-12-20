@@ -18,7 +18,7 @@ Search Results
     {% endif %}
     <div class="profile-info">
         <div class="name-username-container">
-            <div class="name lg name-username" onclick="changeUrl(`{{ url_for('anime.anime_page', id=anime.id) }}`)">{{ anime.title }}</div>
+            <div class="name sm name-username" onclick="changeUrl(`{{ url_for('anime.anime_page', id=anime.id) }}`)">{{ anime.title }}</div>
         </div>
         <h3>Recommended by {{ recommendation.recommended_by.username }}</h3>
         {% if rating %}
