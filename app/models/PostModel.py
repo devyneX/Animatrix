@@ -33,8 +33,10 @@ class Post(db.Model):
         for post in user.posts.all():
             Reaction.query.filter_by(post_id=post.id).delete()
             Comment.query.filter_by(post_id=post.id).delete()
+            db.session.commit()
             if post.post_type == "anime_post":
                 AnimePost.query.filter_by(id=post.id).delete()
+                db.session.commit()
             cls.query.filter_by(author_id=user.id).delete()
         db.session.commit()
 
