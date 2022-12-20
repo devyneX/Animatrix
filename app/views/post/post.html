@@ -55,24 +55,31 @@
                 <i class="fa-solid fa-thumbs-down fa-lg"></i>
             </div>
             {% endif %}
-            <div id="comment{{ post.id }}" class="post-reaction-button" onclick="">
+            <div id="comment{{ post.id }}" class="post-reaction-button">
                 <i class="fa-solid fa-comment fa-lg"></i>
             </div>
         </div>
         <hr>
         <div class="name-username-dp-container">
-            <div class="profile-picture-container">
-                <img class="profile-picture sm" src="https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250">
+            {% if post.author.profile_pic %}
+            <div class="profile-picture-container sm">
+                <img class="profile-picture sm" src="/static/img/upload_folder/{{ current_user.profile_pic }}">
             </div>
+            {% else %}
+            <div class="profile-picture-container sm">
+                <img class="profile-picture sm" src="/static/img/user.svg">
+            </div>
+            {% endif %}
             <div class="name-username">
-                <div class="name s">{{ post.author.name }}</div>
-                <div class="username s">@{{ post.author.username }}</div>
+                <div class="name s">{{ current_user.name }}</div>
+                <div class="username s">@{{ current_user.username }}</div>
             </div>
         </div>
         <form method="POST" action="{{ url_for('post.comment', id=post.id) }}">
-            <!-- TODO: fix this -->
-            <textarea name="comment" placeholder="Comment"></textarea>
-            <button type="submit" class="button btn-round btn-lblue">Post</button>
+            <textarea class="post-textarea" name="comment" placeholder="Comment"></textarea>
+            <div class="form-button-holder">
+                <button type="submit" class="button btn-round btn-lblue auth-submit-button">Post</button>
+            </div>
         </form>
         {% for comment in post.comments %}
         <hr>
