@@ -241,7 +241,7 @@ class UserController:
                         Recommendation.recommended_to_id == current_user.id,
                         Anime.title.ilike(f"%{title}%"),
                         ratings.c.avg_rating >= rating,
-                        Anime.release_date.between(start_date, end_date),
+                        Anime._release_date.between(start_date, end_date),
                     )
                     .order_by(ratings.c.avg_rating)
                 ).all()
@@ -261,7 +261,7 @@ class UserController:
                         Recommendation.recommended_by_id == recommender_user.id,
                         Anime.title.ilike(f"%{title}%"),
                         ratings.c.avg_rating >= rating,
-                        Anime.release_date.between(start_date, end_date),
+                        Anime._release_date.between(start_date, end_date),
                     )
                     .order_by(ratings.c.avg_rating)
                 ).all()
