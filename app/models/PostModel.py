@@ -29,9 +29,13 @@ class Post(db.Model):
     @classmethod
     def delete(cls, user):
         Reaction.query.filter_by(user_id=user.id).delete()
-        Comment.query.filter_by(author_id=user.id).delete()
-        AnimePost.query.filter_by(author_id=user.id).delete()
-        cls.query.filter_by(author_id=user.id).delete()
+        Comment.query.filter_by(user_id=user.id).delete()
+        for post in user.posts.all():
+            Reaction.query.filter_by(post_id=post.id).delete()
+            Comment.query.filter_by(post_id=post.id).delete()
+            if post.post_type == "anime_post":
+                AnimePost.query.filter_by(id=post.id).delete()
+            cls.query.filter_by(author_id=user.id).delete()
         db.session.commit()
 
 
