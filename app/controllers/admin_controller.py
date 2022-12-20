@@ -239,7 +239,7 @@ class AdminController:
             db.session.add(support_resp)
             db.session.commit()
 
-            Notification.support_response_notification(support_req.user, support_req)
+            Notification.support_notification(support_req.user, support_req)
 
             flash("Response sent", "success")
 
