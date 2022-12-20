@@ -26,6 +26,14 @@ class Post(db.Model):
     def get_reaction(self, user):
         return self.reactions.filter_by(user_id=user.id).first()
 
+    @classmethod
+    def delete(cls, user):
+        Reaction.query.filter_by(user_id=user.id).delete()
+        Comment.query.filter_by(author_id=user.id).delete()
+        AnimePost.query.filter_by(author_id=user.id).delete()
+        cls.query.filter_by(author_id=user.id).delete()
+        db.session.commit()
+
 
 class AnimePost(Post):
     __tablename__ = "anime_post"

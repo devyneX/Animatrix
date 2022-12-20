@@ -2,6 +2,8 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from .association_tables import follower, watchlist, favorite
+from .PostModel import Post
+from .AnimeModel import Rating
 from ..extensions import db
 
 
@@ -190,13 +192,11 @@ class PermanentBan(db.Model):
         user.watchlist_animes = []
         Recommendation.query.filter_by(recommended_by_id=user.id).delete()
         Recommendation.query.filter_by(recommended_to_id=user.id).delete()
-        user.ratings = []
-        user.posts = []
-        user.reactions = []
-        user.comments = []
-        user.bans = []
-        user.support_requests = []
-        user.notifications = []
+        Rating.query.filter_by(user_id=user.id).delete()
+        Post.delete(user)
+        Ban.query.filter_by(user_id=user.id).delete()
+        SupportRequest.query.filter_by(user_id=user.id).delete()
+        Notification.query.filter_by(user_id=user.id).delete()
         ban = cls(email=user.email)
         db.session.delete(user)
         db.session.commit()
