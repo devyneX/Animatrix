@@ -1,0 +1,32 @@
+{% extends "search_results.html" %}
+
+{% block title %}
+Search Results
+{% endblock %}
+
+{% block search_results %}
+{% for anime, recommendation, rating in list %}
+<div class="profile-body-component profile-card post-container">
+    {% if anime.picture %}
+    <div class="profile-picture-container sm">
+        <img class="profile-picture sm sqr" src="/static/img/upload_folder/{{ anime.picture }}" alt="">
+    </div>
+    {% else %}
+    <div class="profile-picture-container sm">
+        <img class="profile-picture sm sqr" src="/static/img/anime_default.png" alt="no image">
+    </div>
+    {% endif %}
+    <div class="profile-info">
+        <div class="name-username-container">
+            <div class="name lg name-username" onclick="changeUrl(`{{ url_for('anime.anime_page', id=anime.id) }}`)">{{ anime.title }}</div>
+        </div>
+        <h3>Recommended by {{ recommendation.recommended_by.username }}</h3>
+        {% if rating %}
+        <h3>Average Rating: {{ rating }}</h3>
+        {% else %}
+        <h3>Average Rating: 0.00</h3>
+        {% endif %}            
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

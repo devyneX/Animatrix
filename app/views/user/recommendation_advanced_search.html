@@ -10,7 +10,7 @@
 
 <div class="form-item-container">
     <label for="">Recommended by</label>
-    <input list="recommender-   list" name="recommender" class="auth-form-input" placeholder="Recommended by">
+    <input list="recommender-list" name="recommender" class="auth-form-input" placeholder="Recommended by">
     <datalist id="recommender-list">
         {% for friend in friends %}
         <option value="{{ friend.username }}">

@@ -266,7 +266,7 @@ class UserController:
                     .order_by(ratings.c.avg_rating)
                 ).all()
 
-            return render_template("search_results.html", list=res)
+            return render_template("recommendation_search_results.html", list=res)
 
     @login_required
     def post(self):
