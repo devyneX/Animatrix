@@ -82,7 +82,7 @@ class AdminController:
             reason=reason,
             link=link,
             ban_start=start_date,
-            ban_end=end_date,
+            _ban_end=end_date,
         )
 
         db.session.add(ban)
